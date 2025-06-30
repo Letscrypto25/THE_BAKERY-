@@ -1,19 +1,470 @@
-<!doctype html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<title>My static Space</title>
-		<link rel="stylesheet" href="style.css" />
-	</head>
-	<body>
-		<div class="card">
-			<h1>Welcome to your static Space!</h1>
-			<p>You can modify this app directly by editing <i>index.html</i> in the Files and versions tab.</p>
-			<p>
-				Also don't forget to check the
-				<a href="https://huggingface.co/docs/hub/spaces" target="_blank">Spaces documentation</a>.
-			</p>
-		</div>
-	</body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, sinitial-scale=1.0">
+    <title>The Bakery | Artisan Savory Bakes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f5f2;
+            color: #333;
+        }
+        
+        .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .menu-item:hover .menu-overlay {
+            opacity: 1;
+        }
+        
+        .menu-overlay {
+            transition: opacity 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #d4a373;
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .testimonial-card {
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl playfair font-bold text-[#d4a373]">The Bakery</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-[#d4a373]">Home</a>
+                    <a href="#about" class="nav-link text-gray-700 hover:text-[#d4a373]">About</a>
+                    <a href="#menu" class="nav-link text-gray-700 hover:text-[#d4a373]">Menu</a>
+                    <a href="#gallery" class="nav-link text-gray-700 hover:text-[#d4a373]">Gallery</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-[#d4a373]">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-btn" class="text-gray-700 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <a href="#home" class="block py-2 text-gray-700 hover:text-[#d4a373]">Home</a>
+                <a href="#about" class="block py-2 text-gray-700 hover:text-[#d4a373]">About</a>
+                <a href="#menu" class="block py-2 text-gray-700 hover:text-[#d4a373]">Menu</a>
+                <a href="#gallery" class="block py-2 text-gray-700 hover:text-[#d4a373]">Gallery</a>
+                <a href="#contact" class="block py-2 text-gray-700 hover:text-[#d4a373]">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg h-screen flex items-center justify-center text-center text-white">
+        <div class="container mx-auto px-6">
+            <h1 class="playfair text-4xl md:text-6xl font-bold mb-6">Artisan Savory Bakery</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">Handcrafted with passion, baked with tradition</p>
+            <a href="#menu" class="bg-[#d4a373] hover:bg-[#c19260] text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-block">Explore Our Menu</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                    <img src="https://images.unsplash.com/photo-1608190003443-86a5e16caaae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Fresh Bread Baking" class="rounded-lg shadow-xl w-full h-auto">
+                </div>
+                <div class="md:w-1/2">
+                    <h2 class="playfair text-3xl md:text-4xl font-bold mb-6 text-[#d4a373]">Our Story</h2>
+                    <p class="text-gray-700 mb-4">Founded in 2010, The Bakery began as a small family-owned shop with a passion for creating exceptional savory baked goods. What started as a humble neighborhood bakery has grown into a beloved destination for food enthusiasts seeking authentic, handcrafted flavors.</p>
+                    <p class="text-gray-700 mb-6">We specialize in traditional techniques combined with innovative twists, using only the finest locally-sourced ingredients. Our team of skilled bakers takes pride in every loaf, pastry, and creation that comes out of our ovens.</p>
+                    <div class="flex flex-wrap">
+                        <div class="w-full sm:w-1/2 mb-4">
+                            <div class="flex items-center">
+                                <div class="bg-[#d4a373] rounded-full p-2 mr-4">
+                                    <i class="fas fa-bread-slice text-white"></i>
+                                </div>
+                                <span class="font-semibold">Handmade Daily</span>
+                            </div>
+                        </div>
+                        <div class="w-full sm:w-1/2 mb-4">
+                            <div class="flex items-center">
+                                <div class="bg-[#d4a373] rounded-full p-2 mr-4">
+                                    <i class="fas fa-leaf text-white"></i>
+                                </div>
+                                <span class="font-semibold">Local Ingredients</span>
+                            </div>
+                        </div>
+                        <div class="w-full sm:w-1/2">
+                            <div class="flex items-center">
+                                <div class="bg-[#d4a373] rounded-full p-2 mr-4">
+                                    <i class="fas fa-heart text-white"></i>
+                                </div>
+                                <span class="font-semibold">Family Recipes</span>
+                            </div>
+                        </div>
+                        <div class="w-full sm:w-1/2">
+                            <div class="flex items-center">
+                                <div class="bg-[#d4a373] rounded-full p-2 mr-4">
+                                    <i class="fas fa-award text-white"></i>
+                                </div>
+                                <span class="font-semibold">Award Winning</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-20 bg-[#f8f5f2]">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="playfair text-3xl md:text-4xl font-bold mb-4 text-[#d4a373]">Our Savory Selection</h2>
+                <p class="text-gray-700 max-w-2xl mx-auto">Discover our carefully crafted menu of savory delights, perfect for any time of day.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Menu Item 1 -->
+                <div class="menu-item bg-white rounded-lg overflow-hidden shadow-md relative">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80" alt="Fresh Bread Loaves" class="w-full h-64 object-cover">
+                    <div class="menu-overlay absolute inset-0 bg-black bg-opacity-50 opacity-0 flex items-center justify-center">
+                        <button class="bg-[#d4a373] hover:bg-[#c19260] text-white font-bold py-2 px-6 rounded-full transition duration-300">View Recipe</button>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="playfair text-xl font-bold mb-2">Rustic Vegetable Tart</h3>
+                        <p class="text-gray-600 mb-4">Flaky pastry filled with seasonal vegetables and herb-infused cheese.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-[#d4a373]">R127</span>
+                            <button class="bg-[#d4a373] hover:bg-[#c19260] text-white font-bold py-1 px-4 rounded-full text-sm transition duration-300">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Menu Item 2 -->
+                <div class="menu-item bg-white rounded-lg overflow-hidden shadow-md relative">
+                    <img src="https://images.unsplash.com/photo-1517686469429-8bdb88b9f907?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Freshly Baked Pie" class="w-full h-64 object-cover">
+                    <div class="menu-overlay absolute inset-0 bg-black bg-opacity-50 opacity-0 flex items-center justify-center">
+                        <button class="bg-[#d4a373] hover:bg-[#c19260] text-white font-bold py-2 px-6 rounded-full transition duration-300">View Recipe</button>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="playfair text-xl font-bold mb-2">Three Cheese Focaccia</h3>
+                        <p class="text-gray-600 mb-4">Olive oil-infused bread with mozzarella, parmesan, and gorgonzola.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-[#d4a373]">R105</span>
+                            <button class="bg-[#d4a373] hover:bg-[#c19260] text-white font-bold py-1 px-4 rounded-full text-sm transition duration-300">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Menu Item 3 -->
+                <div class="menu-item bg-white rounded-lg overflow-hidden shadow-md relative">
+                    <img src="https://images.unsplash.com/photo-1560180474-e856b971d5d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Artisan Bread Basket" class="w-full h-64 object-cover">
+                    <div class="menu-overlay absolute inset-0 bg-black bg-opacity-50 opacity-0 flex items-center justify-center">
+                        <button class="bg-[#d4a373] hover:bg-[#c19260] text-white font-bold py-2 px-6 rounded-full transition duration-300">View Recipe</button>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="playfair text-xl font-bold mb-2">Artisan Sausage Roll</h3>
+                        <p class="text-gray-600 mb-4">Flaky puff pastry wrapped around our house-made herb sausage.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-[#d4a373]">R97</span>
+                            <button class="bg-[#d4a373] hover:bg-[#c19260] text-white font-bold py-1 px-4 rounded-full text-sm transition duration-300">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-block border-2 border-[#d4a373] text-[#d4a373] hover:bg-[#d4a373] hover:text-white font-bold py-3 px-8 rounded-full transition duration-300">View Full Menu</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="playfair text-3xl md:text-4xl font-bold mb-4 text-[#d4a373]">Bakery Gallery</h2>
+                <p class="text-gray-700 max-w-2xl mx-auto">A glimpse into our daily baking process and delicious creations.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="overflow-hidden rounded-lg shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1549931319-a545dcf3bc73?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Bread Baking Process" class="w-full h-64 object-cover transition duration-500 hover:scale-105">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1512012023131-f0a51431d3b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Fresh Baguettes" class="w-full h-64 object-cover transition duration-500 hover:scale-105">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80" alt="Freshly Baked Pies" class="w-full h-64 object-cover transition duration-500 hover:scale-105">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1608190003443-86a5e16caaae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Bakery Interior" class="w-full h-64 object-cover transition duration-500 hover:scale-105">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Ingredients" class="w-full h-64 object-cover transition duration-500 hover:scale-105">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80" alt="Customers" class="w-full h-64 object-cover transition duration-500 hover:scale-105">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-20 bg-[#f8f5f2]">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="playfair text-3xl md:text-4xl font-bold mb-4 text-[#d4a373]">What Our Customers Say</h2>
+                <p class="text-gray-700 max-w-2xl mx-auto">Don't just take our word for it - hear from our satisfied customers.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="testimonial-card bg-white p-8 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-6">"The savory tarts are absolutely divine! I come here every Saturday morning for my weekly treat. The flavors are always perfectly balanced."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah J." class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Sarah J.</h4>
+                            <p class="text-gray-600 text-sm">Regular Customer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card bg-white p-8 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-6">"I ordered the cheese focaccia for a party and everyone raved about it. The bakery even accommodated my last-minute request - amazing service!"</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Michael T." class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Michael T.</h4>
+                            <p class="text-gray-600 text-sm">Event Planner</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card bg-white p-8 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-6">"As a food blogger, I've tried bakeries all over the city. The Bakery stands out for their unique savory offerings and consistent quality."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emily R." class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Emily R.</h4>
+                            <p class="text-gray-600 text-sm">Food Blogger</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                    <h2 class="playfair text-3xl md:text-4xl font-bold mb-6 text-[#d4a373]">Visit Us</h2>
+                    <p class="text-gray-700 mb-8">We'd love to see you at our bakery! Come enjoy our cozy atmosphere and fresh-from-the-oven creations.</p>
+                    
+                    <div class="mb-8">
+                        <h3 class="font-bold text-lg mb-2">Hours</h3>
+                        <p class="text-gray-700 mb-1">Monday - Friday: 7am - 6pm</p>
+                        <p class="text-gray-700 mb-1">Saturday: 8am - 5pm</p>
+                        <p class="text-gray-700">Sunday: 9am - 3pm</p>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <h3 class="font-bold text-lg mb-2">Location</h3>
+                        <p class="text-gray-700">123 Artisan Lane<br>Bakersville, CA 90210</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="font-bold text-lg mb-2">Contact</h3>
+                        <p class="text-gray-700 mb-1">Phone: (555) 123-4567</p>
+                        <p class="text-gray-700">Email: hello@thebakery.com</p>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <h2 class="playfair text-3xl md:text-4xl font-bold mb-6 text-[#d4a373]">Get In Touch</h2>
+                    <form class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-gray-700 mb-2">Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4a373]">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 mb-2">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4a373]">
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-gray-700 mb-2">Subject</label>
+                            <input type="text" id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4a373]">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-700 mb-2">Message</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4a373]"></textarea>
+                        </div>
+                        <button type="submit" class="bg-[#d4a373] hover:bg-[#c19260] text-white font-bold py-3 px-6 rounded-full transition duration-300">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-16 bg-[#d4a373] text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="playfair text-3xl md:text-4xl font-bold mb-4">Join Our Newsletter</h2>
+            <p class="mb-8 max-w-2xl mx-auto">Subscribe to receive updates on seasonal specials, new menu items, and exclusive offers.</p>
+            <form class="max-w-md mx-auto flex">
+                <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-l-lg focus:outline-none text-gray-900">
+                <button type="submit" class="bg-[#333] hover:bg-black text-white font-bold px-6 rounded-r-lg transition duration-300">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#333] text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="playfair text-xl font-bold mb-4 text-[#d4a373]">The Bakery</h3>
+                    <p class="mb-4">Artisan savory bakery crafting exceptional baked goods since 2010.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white hover:text-[#d4a373] transition duration-300"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white hover:text-[#d4a373] transition duration-300"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white hover:text-[#d4a373] transition duration-300"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white hover:text-[#d4a373] transition duration-300"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="hover:text-[#d4a373] transition duration-300">Home</a></li>
+                        <li><a href="#about" class="hover:text-[#d4a373] transition duration-300">About Us</a></li>
+                        <li><a href="#menu" class="hover:text-[#d4a373] transition duration-300">Menu</a></li>
+                        <li><a href="#gallery" class="hover:text-[#d4a373] transition duration-300">Gallery</a></li>
+                        <li><a href="#contact" class="hover:text-[#d4a373] transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Products</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-[#d4a373] transition duration-300">Savory Tarts</a></li>
+                        <li><a href="#" class="hover:text-[#d4a373] transition duration-300">Artisan Breads</a></li>
+                        <li><a href="#" class="hover:text-[#d4a373] transition duration-300">Pastries</a></li>
+                        <li><a href="#" class="hover:text-[#d4a373] transition duration-300">Seasonal Specials</a></li>
+                        <li><a href="#" class="hover:text-[#d4a373] transition duration-300">Gift Boxes</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Contact Info</h4>
+                    <p class="mb-2">123 Artisan Lane</p>
+                    <p class="mb-2">Bakersville, CA 90210</p>
+                    <p class="mb-2">Phone: (555) 123-4567</p>
+                    <p class="mb-2">Email: hello@thebakery.com</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 The Bakery. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+        
+        // Add shadow to navbar on scroll
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-lg');
+            } else {
+                nav.classList.remove('shadow-lg');
+            }
+        });
+    </script>
+<p style="border-radius: 8px; text-align: center; font-size: 12px; color: #fff; margin-top: 16px;position: fixed; left: 8px; bottom: 8px; z-index: 10; background: rgba(0, 0, 0, 0.8); padding: 4px 8px;">Made with <img src="https://enzostvs-deepsite.hf.space/logo.svg" alt="DeepSite Logo" style="width: 16px; height: 16px; vertical-align: middle;display:inline-block;margin-right:3px;filter:brightness(0) invert(1);"><a href="https://enzostvs-deepsite.hf.space" style="color: #fff;text-decoration: underline;" target="_blank" >DeepSite</a> - 🧬 <a href="https://enzostvs-deepsite.hf.space?remix=Ethan0420/the-bakery" style="color: #fff;text-decoration: underline;" target="_blank" >Remix</a></p></body>
 </html>
